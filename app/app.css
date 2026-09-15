@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@plugin "@iconify/tailwind4";
+
+:root {
+  color-scheme: light dark;
+}
+
+@keyframes thinking-shimmer {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.thinking {
+  background-image: linear-gradient(90deg, #52525b 20%, #f4f4f5 50%, #52525b 80%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: thinking-shimmer 1.8s linear infinite;
+}
