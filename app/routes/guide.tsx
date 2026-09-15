@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
   ]
 }
 
-const BASE_URL = 'http://infra.tmp.com/v1'
+const BASE_URL = 'https://infra.rimsage.com/v1'
 
 function Code({ label, children }: { label: string; children: string }) {
   return (
