@@ -1,5 +1,5 @@
 import { EventEmitter } from 'node:events'
-import { DatabaseSync } from 'node:sqlite'
+import { Database } from 'bun:sqlite'
 import { extractUserText, mkId } from './responses.server'
 
 export type Status = 'queued' | 'completed' | 'cancelled' | 'failed'
@@ -61,7 +61,7 @@ function titleFrom(inputJson: string, fallback: string): string {
 }
 
 function createCarbon() {
-  const db = new DatabaseSync('carbon.db')
+  const db = new Database('carbon.db')
   db.exec(`
     CREATE TABLE IF NOT EXISTS conversations (
       id TEXT PRIMARY KEY,
