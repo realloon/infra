@@ -193,7 +193,7 @@ export function ConversationView({
   return (
     <div className="flex h-full flex-col">
       {!draft && (
-        <header className="flex h-14 shrink-0 items-center px-6">
+        <header className="flex h-14 shrink-0 items-center pr-6 pl-14 md:px-6">
           <h1 className="truncate text-base font-semibold">{data.title}</h1>
         </header>
       )}

@@ -52,6 +52,12 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
     }
   }, [activeId, conversations, homeBase, navigate])
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [location.pathname])
+
   const [editingId, setEditingId] = useState<string | null>(null)
   const renameFetcher = useFetcher()
   const deleteFetcher = useFetcher()
@@ -68,7 +74,28 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="flex h-screen bg-zinc-950 text-zinc-100">
-      <aside className="flex w-64 shrink-0 flex-col border-r border-zinc-800">
+      <button
+        type="button"
+        aria-label="打开侧栏"
+        onClick={() => setSidebarOpen(true)}
+        className="fixed left-3 top-3 z-30 grid h-9 w-9 place-items-center rounded-lg text-zinc-400 transition hover:bg-zinc-800 md:hidden"
+      >
+        <span className="icon-[material-symbols--menu] text-xl" />
+      </button>
+
+      {sidebarOpen && (
+        <div
+          aria-hidden
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 z-30 bg-black/60 md:hidden"
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 shrink-0 flex-col border-r border-zinc-800 bg-zinc-950 transition-transform md:static md:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
         <div className="flex h-14 items-center gap-2 px-4">
           <span className="icon-[material-symbols--neurology] text-2xl text-emerald-400" />
           <h1 className="text-sm font-semibold">Carbon Infra</h1>
